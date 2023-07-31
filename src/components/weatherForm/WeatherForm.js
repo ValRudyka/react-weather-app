@@ -1,24 +1,23 @@
 import React from "react";
 
+import Weather from "../weather/Weather";
 import { convertToFlag } from "../../helpers";
 
 class WeatherForm extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    location: "",
+    isLoading: false,
+    weather: {},
+    country: "",
+  };
 
-    this.state = {
-      location: "",
-    };
-
-    this.fetchWeather = this.fetchWeather.bind(this);
-  }
-
-  async fetchWeather() {
+  fetchWeather = async () => {
     if (!this.state.location) {
       return;
     }
 
     try {
+      this.setState({ isLoading: true });
       // 1) Getting location (geocoding)
       const geoRes = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${this.state.location}`
@@ -30,23 +29,23 @@ class WeatherForm extends React.Component {
 
       const { latitude, longitude, timezone, name, country_code } =
         geoData.results.at(0);
-      console.log(`${name} ${convertToFlag(country_code)}`);
+      this.setState({ country: `${name} ${convertToFlag(country_code)}` });
 
       // 2) Getting actual weather
       const weatherRes = await fetch(
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=${timezone}&daily=weathercode,temperature_2m_max,temperature_2m_min`
       );
       const weatherData = await weatherRes.json();
-      console.log(weatherData.daily);
+      this.setState({ weather: weatherData.daily });
     } catch (err) {
       console.err(err);
+    } finally {
+      this.setState({ isLoading: false });
     }
-
-    console.log(this);
-  }
+  };
 
   render() {
-    const { location } = this.state;
+    const { location, isLoading, weather, country } = this.state;
 
     return (
       <>
@@ -60,6 +59,11 @@ class WeatherForm extends React.Component {
           />
         </div>
         <button onClick={this.fetchWeather}>Get weather</button>
+        {isLoading && <p className="loader">Loading...</p>}
+
+        {weather.weathercode && (
+          <Weather weather={weather} countryDetail={country} />
+        )}
       </>
     );
   }
