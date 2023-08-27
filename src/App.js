@@ -1,4 +1,3 @@
-import "./App.css";
 import WeatherForm from "./components/weatherForm/WeatherForm";
 
 function App() {

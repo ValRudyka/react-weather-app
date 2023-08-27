@@ -34,6 +34,7 @@ export function useFetchWeather(location) {
           `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&timezone=${timezone}&daily=weathercode,temperature_2m_max,temperature_2m_min`,
           { signal: controller.signal }
         );
+
         const weatherData = await weatherRes.json();
         setWeather(weatherData.daily);
       } catch (err) {
@@ -44,6 +45,7 @@ export function useFetchWeather(location) {
         setIsLoading(false);
       }
     }
+
     fetchWeather();
 
     return () => {
