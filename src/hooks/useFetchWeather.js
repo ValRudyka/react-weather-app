@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { convertToFlag } from "./helpers";
+import { convertToFlag } from "../helpers/helpers";
 
 export function useFetchWeather(location) {
   const [country, setCountry] = useState("");

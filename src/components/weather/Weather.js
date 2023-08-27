@@ -1,4 +1,4 @@
-import { formatDay, getWeatherIcon } from "../../helpers";
+import { formatDay, getWeatherIcon } from "../../helpers/helpers";
 
 function Weather({
   weather: {
