@@ -1,5 +1,5 @@
-import { useFetchWeather } from "../../useFetchWeather";
-import { useLocalStorage } from "../../useLocalStorage";
+import { useFetchWeather } from "../../hooks/useFetchWeather";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 import Weather from "../weather/Weather";
 
