@@ -3,7 +3,7 @@
 Simple weather app where you can find out about the weather in your city/town for the week ahead..\
 It is not necessary for you to write the full name of the city/town, API can determine the name if you have written down only 3 letters..\
 The API that has been used in this project:.\
-1)Geocoding API from Open-Meteo(link for docs: https://open-meteo.com/en/docs/geocoding-api).\
+1)Geocoding API from Open-Meteo(link for docs: https://open-meteo.com/en/docs/geocoding-api) .\
 2)Weather Forecast API from Open-Meteo(link for docs: https://open-meteo.com/en/docs)
 
 # Getting Started with Create React App
