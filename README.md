@@ -1,4 +1,4 @@
-#About the project
+# About the project
 
 Simple weather app where you can find out about the weather in your city/town for the week ahead.
 It is not necessary for you to write the full name of the city/town, API can determine the name if you have written down only 3 letters.
